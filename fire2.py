@@ -13,22 +13,17 @@ brights, lons, lats = (
     [],
 )
 
+
 for fire in fire_data:
-    bright = fire["bright_t31"]
+    bright = fire["brightness"]
     lon = fire["longitude"]
     lat = fire["latitude"]
+    if bright >= 450:
+        brights.append(bright)
+        lons.append(lon)
+        lats.append(lat)
 
-    brights.append(bright)
-    lons.append(lon)
-    lats.append(lat)
-if bright > 450:
-    print(brights[:10])
-"""
-k = 450
-for i in brights:
-    if i > k:
-        print(brights[:10])
-"""
+
 print(lons[:10])
 print(lats[:10])
 print(brights[:10])
@@ -42,7 +37,7 @@ data = [
         "lon": lons,
         "lat": lats,
         "marker": {
-            "size": [0.03 * bright for bright in brights],
+            "size": [0.025 * bright for bright in brights],
             "color": brights,
             "colorscale": "Viridis",
             "reversescale": True,
